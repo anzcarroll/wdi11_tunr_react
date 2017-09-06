@@ -42,6 +42,14 @@ _toggleNewArtist = () => {
   this.setState(newState)
 }
 
+_addArtist = async (newstate) => {
+  const response = await axios.post('/api/artists', newstate)
+  const artist = response.data
+  const newState = {...this.state}
+  newState.artists.push(artist)
+  newState.newArtist = false
+  this.setState(newState)
+}
 
   render(){
     if (this.state.error){
@@ -49,7 +57,7 @@ _toggleNewArtist = () => {
     }
     return (
       <div>
-        {this.state.newArtist ? <NewArtist /> : null}
+        {this.state.newArtist ? <NewArtist addArtist ={this._addArtist}/> : null}
         <button onClick={this._toggleNewArtist}>Create New Artist</button>
       <ArtistListStyles>
         {this.state.artists.map((artist) => (

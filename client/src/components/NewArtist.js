@@ -11,14 +11,14 @@ class NewArtist extends Component {
             }
         }
     }
-    _handleSumbit = (e) => {
-e.preventDefault();
-console.log("lets create a newbby")
+    _handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.addArtist(this.state.NewArtist)
     }
     _handleChange = (e) => {
         const attributeValue = e.target.value;
-        const attributeName =  e.target.name;
-        const newState = {...this.state};
+        const attributeName = e.target.name;
+        const newState = { ...this.state };
         newState.NewArtist[attributeName] = attributeValue
         this.setState(newState)
     }
@@ -28,10 +28,10 @@ console.log("lets create a newbby")
         return (
             <div>
                 <form onSubmit={this._handleSubmit}>
-                    <input type="text" name="name" placeholder="artist name" onChange={this._handleChange}/>
-                    <input type="text" name="nationality" placeholder="nationality" onChange={this._handleChange}/>
-                    <input type="text" name="photo_url" placeholder="insert a url for photo" onChange={this._handleChange}/>
-                    <input type="submit" value="Add Artist"/>
+                    <input type="text" name="name" placeholder="artist name" onChange={this._handleChange} />
+                    <input type="text" name="nationality" placeholder="nationality" onChange={this._handleChange} />
+                    <input type="text" name="photo_url" placeholder="insert a url for photo" onChange={this._handleChange} />
+                    <input type="submit" value="Add Artist" />
                 </form>
             </div>
         );
